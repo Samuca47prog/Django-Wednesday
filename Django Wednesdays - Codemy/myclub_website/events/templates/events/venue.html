@@ -11,6 +11,7 @@
                 </td>
                 <td align="right">
                     <a href="{% url 'update-venue' venue.id %}" class="btn btn-outline-secondary bnt-sm">Update</a>
+                    <a href="{% url 'delete-venue' venue.id %}" class="btn btn-outline-danger bnt-sm">Delete</a>
                 </td>
             </tr>    
             {% endfor %}
