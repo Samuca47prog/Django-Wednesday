@@ -125,11 +125,14 @@ def add_venue(request):
 
 
 def all_events(request):
-    event_list = Event.objects.all()
+    event_list = Event.objects.all().order_by('?')
 
     return render(request, 'events/events_list.html', {
         'event_list': event_list
     })
+
+
+
 
 # Create your views here.
 def home(request, year=datetime.now().year, month=datetime.now().strftime("%B")):
