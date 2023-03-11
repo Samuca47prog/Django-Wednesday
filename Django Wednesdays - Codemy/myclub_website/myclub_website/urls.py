@@ -20,3 +20,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('events.urls')),
 ]
+
+
+# Configure Admin interface 
+admin.site.site_header = "My club administration page"
+admin.site.site_title = "My club"
+admin.site.index_title = "Admin area"
+
