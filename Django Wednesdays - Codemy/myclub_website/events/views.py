@@ -24,6 +24,19 @@ from django.core.paginator import Paginator
 
 
 
+def my_events(request):
+     if request.user.is_authenticated:
+          me = request.user.id
+          events = Event.objects.filter(attendees=me)
+          return render(request, 'events/my_events.html', {
+               "events": events
+          })
+     else:
+        messages.success(request, "You Are Not Authorized to View this page.")
+        return redirect('home')
+
+
+
 def venue_pdf(request):
     buf = io.BytesIO()
     c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
