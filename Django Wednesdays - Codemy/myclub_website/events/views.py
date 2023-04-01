@@ -291,20 +291,56 @@ def all_events(request):
 
 
 
-# Create your views here.
-def home(request, year=datetime.now().year, month=datetime.now().strftime("%B")):
-    month = month.capitalize()
-    month_number = datetime.strptime(month, '%B').month
-    month_number = int(month_number)
+# # Create your views here.
+# def home(request, year=datetime.now().year, month=datetime.now().strftime("%B")):
+#     month = month.capitalize()
+#     month_number = datetime.strptime(month, '%B').month
+#     month_number = int(month_number)
 
-    cal = HTMLCalendar().formatmonth(
-        year,
-        month_number
-    )
+#     cal = HTMLCalendar().formatmonth(
+#         year,
+#         month_number
+#     )
 
-    return render(request, 'events\home.html', {
-        'year': year,
-        'month': month,
-        'month_number': month_number,
-        'cal': cal
-    })
+#     return render(request, 'events\home.html', {
+#         'year': year,
+#         'month': month,
+#         'month_number': month_number,
+#         'cal': cal
+#     })
+
+def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
+	name = "John"
+	month = month.capitalize()
+        
+	# Convert month from name to number
+	month_number = list(calendar.month_name).index(month)
+	month_number = int(month_number)
+
+	# create a calendar
+	cal = HTMLCalendar().formatmonth(
+		year, 
+		month_number)
+	# Get current year
+	now = datetime.now()
+	current_year = now.year
+	
+	# Query the Events Model For Dates
+	event_list = Event.objects.filter(
+		event_date__year = year,
+		event_date__month = month_number
+		)
+
+	# Get current time
+	time = now.strftime('%I:%M %p')
+	return render(request, 
+		'events/home.html', {
+		"name": name,
+		"year": year,
+		"month": month,
+		"month_number": month_number,
+		"cal": cal,
+		"current_year": current_year,
+		"time":time,
+		"event_list": event_list,
+		})
