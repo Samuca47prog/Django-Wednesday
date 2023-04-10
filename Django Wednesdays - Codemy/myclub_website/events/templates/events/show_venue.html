@@ -22,6 +22,8 @@
         <br>
 
     {% if venue.venue_image %}
-        <img src="{{ venue.venue_image.url }}" alt="Image" width=500>
+        <div class="text-center">
+            <img src="{{ venue.venue_image.url }}" alt="Image" class="rounded" width=500>
+        </div>
     {% endif %}
 {% endblock %}
