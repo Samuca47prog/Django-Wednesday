@@ -20,4 +20,8 @@
         </div>
     </div>
         <br>
+
+    {% if venue.venue_image %}
+        <img src="{{ venue.venue_image.url }}" alt="Image" width=500>
+    {% endif %}
 {% endblock %}
