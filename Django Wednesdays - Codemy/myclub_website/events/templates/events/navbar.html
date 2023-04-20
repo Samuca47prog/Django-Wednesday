@@ -19,7 +19,6 @@
             <li><a class="dropdown-item" href="{% url 'list-events' %}">All Events</a></li>
             {% if user.is_authenticated %}
               <li><a class="dropdown-item" href="{% url 'add-event' %}">Add Event</a></li>
-              <li><a class="dropdown-item" href="{% url 'my-events' %}">My Events</a></li>
             {% endif %}
             <li><a class="dropdown-item" href="{% url 'search-events' %}">Search Events</a></li>
             </ul>
@@ -49,6 +48,11 @@
         </li>
 
         {% if user.is_authenticated %}
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin-approval' %}">Admin Approvals</a>
+          </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
