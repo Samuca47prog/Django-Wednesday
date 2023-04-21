@@ -3,10 +3,24 @@
     {% block content %}
 
     {% if user.is_authenticated %}
-        <h1>Admin event Approval Portal</h1>
+        <h1>Admin Dashboard</h1>
 
         <form action="" method="POST">
             {% csrf_token %}
+
+            <div class="card">
+                <div class="card-header">
+                  Event - Veue - User Count list
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Event count: {{ event_count }}</p>
+                    <p class="card-text">Venue count: {{ venue_count }}</p>
+                    <p class="card-text">User count: {{ user_count }}</p>
+                </div>
+            </div>
+
+            <br><br>
+            <h1>Event Approval</h1>
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
