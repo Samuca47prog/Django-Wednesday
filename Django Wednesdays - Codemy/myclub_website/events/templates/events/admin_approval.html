@@ -20,6 +20,28 @@
             </div>
 
             <br><br>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Venue Name</th>
+                        <th scope="col">Events</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venue in venue_list %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'show-venue' venue_id=venue.id %}">{{ venue }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'venue-events' venue_id=venue.id %}" class="btn btn-sm btn-secondary">List Events</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <br><br>
             <h1>Event Approval</h1>
             <table class="table table-striped table-hover table-bordered">
                 <thead>
